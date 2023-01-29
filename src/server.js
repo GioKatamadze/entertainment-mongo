@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cors from "cors";
-import path from "path";
 
 import connectToMongo from "./config/mongo.js";
 import userRoutes from "./routes/userRoutes.js";

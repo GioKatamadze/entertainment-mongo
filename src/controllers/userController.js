@@ -2,8 +2,8 @@ import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
-const registerUser = asyncHandler(async (req, res) => {
-  const { firstName, email, password } = req.body;
+export const registerUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -12,12 +12,11 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
-  const user = await User.create({ firstName, email, password });
+  const user = await User.create({ email, password });
 
   if (user) {
     res.status(201).json({
       _id: user._id,
-      firstName: user.firstName,
       email: user.email,
     });
   } else {
@@ -26,7 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-const loginUser = asyncHandler(async (req, res) => {
+export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
@@ -34,7 +33,6 @@ const loginUser = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      firstName: user.firstName,
       email: user.email,
       userToken: generateToken(user._id),
     });
@@ -44,13 +42,12 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-const getUserProfile = asyncHandler(async (req, res) => {
+export const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
     res.json({
       id: user._id,
-      firstName: user.firstName,
       email: user.email,
     });
   } else {
@@ -58,5 +55,3 @@ const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
-
-export { registerUser, loginUser, getUserProfile };
