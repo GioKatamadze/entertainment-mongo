@@ -10,10 +10,6 @@ import swaggerMiddleware from "./middlewares/swagger-middleware.js";
 
 dotenv.config();
 
-if (process.env.NODE_ENV === undefined) {
-  dotenv.config({ path: "../.env" });
-}
-
 connectToMongo();
 
 const app = express();
@@ -23,9 +19,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/images", express.static("public/storage"));
-app.use("/api", movieRouter);
-app.use("/api/user", userRoutes);
-
+app.use("/api", cors(), movieRouter);
+app.use("/api/user", cors(), userRoutes);
 app.use("/", cors(), ...swaggerMiddleware());
 
 app.listen(process.env.PORT || 5000);
