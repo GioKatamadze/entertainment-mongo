@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Entertainment Web App
+  description: Entertainment Web App API
+  version: 0.1.9
+
+servers:
+  - url: https://entertainment-web-app-api-production.up.railway.app/api
+    description: production server
+  - url: http://localhost:5000/api
+    description: local server
+paths:
+  /movies:
+    get:
+      tags:
+        - Movies
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /users:
+    get:
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /auth/signup:
+    post:
+      tags:
+        - Users
+      requestBody:
+        description: create user
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              id:
+              email: test_email@example.com
+              password: test123
+      responses:
+        "200":
+          description: user created
+  /auth/signin:
+    post:
+      tags:
+        - Users
+      requestBody:
+        description: create user
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              email: test_email@example.com
+              password: test123
+      responses:
+        "200":
+          description: user created
