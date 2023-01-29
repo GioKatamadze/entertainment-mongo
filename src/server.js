@@ -21,11 +21,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
 
 app.use("/images", express.static("public/storage"));
 app.use("/api", movieRouter);
