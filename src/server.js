@@ -8,8 +8,7 @@ import connectToMongo from "./config/mongo.js";
 import userRoutes from "./routes/userRoutes.js";
 import movieRouter from "./routes/movieRouter.js";
 import swaggerMiddleware from "./middlewares/swagger-middleware.js";
-import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
-
+import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 const __dirname = path.resolve();
 
 dotenv.config();
