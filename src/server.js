@@ -20,7 +20,7 @@ app.use(cors());
 
 app.use("/images", express.static("public/storage"));
 app.use("/api", cors(), movieRouter);
-app.use("/api/user", cors(), userRoutes);
+app.use("/api", cors(), userRoutes);
 app.use("/", cors(), ...swaggerMiddleware());
 
 app.listen(process.env.PORT || 5000);
