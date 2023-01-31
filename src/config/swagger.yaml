@@ -23,7 +23,7 @@ paths:
                 type: array
                 items:
                   type: string
-  /user/profile:
+  /profile:
     get:
       tags:
         - Users
@@ -36,7 +36,7 @@ paths:
                 type: array
                 items:
                   type: string
-  /user/register:
+  /register:
     post:
       tags:
         - Users
@@ -58,7 +58,7 @@ paths:
       responses:
         "200":
           description: user created
-  /user/login:
+  /login:
     post:
       tags:
         - Users
