@@ -23,7 +23,7 @@ paths:
                 type: array
                 items:
                   type: string
-  /users:
+  /user/profile:
     get:
       tags:
         - Users
@@ -36,32 +36,7 @@ paths:
                 type: array
                 items:
                   type: string
-  /auth/signup:
-    post:
-      tags:
-        - Users
-      requestBody:
-        description: create user
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: number
-                email:
-                  type: string
-                password:
-                  type: string
-            example:
-              id:
-              email: test_email@example.com
-              password: test123
-      responses:
-        "200":
-          description: user created
-  /auth/signin:
+  /user/register:
     post:
       tags:
         - Users
@@ -83,3 +58,25 @@ paths:
       responses:
         "200":
           description: user created
+  /user/login:
+    post:
+      tags:
+        - Users
+      requestBody:
+        description: login user
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              email: test_email@example.com
+              password: test123
+      responses:
+        "200":
+          description: user loggedin
