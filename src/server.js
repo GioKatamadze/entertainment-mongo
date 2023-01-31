@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import connectToMongo from "./config/mongo.js";
-import userRoutes from "./routes/userRoutes.js";
+import userRouter from "./routes/userRouter.js";
 import movieRouter from "./routes/movieRouter.js";
 import swaggerMiddleware from "./middlewares/swagger-middleware.js";
 
@@ -20,7 +20,7 @@ app.use(cors());
 
 app.use("/images", express.static("public/storage"));
 app.use("/api", cors(), movieRouter);
-app.use("/api", cors(), userRoutes);
+app.use("/api", cors(), userRouter);
 app.use("/", cors(), ...swaggerMiddleware());
 
 app.listen(process.env.PORT || 5000);
