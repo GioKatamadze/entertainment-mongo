@@ -18,7 +18,9 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.use("/images", express.static("public/storage"));
+app.use("/regular", express.static("public/storage/regular"));
+app.use("/trending", express.static("public/storage/trending"));
+
 app.use("/api", cors(), movieRouter);
 app.use("/api", cors(), userRouter);
 app.use("/", cors(), ...swaggerMiddleware());
