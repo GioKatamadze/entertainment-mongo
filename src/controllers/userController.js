@@ -43,7 +43,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 
 export const getUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user.email);
 
   if (user) {
     res.json({
