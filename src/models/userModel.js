@@ -9,6 +9,9 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
     },
+    bookmarks: {
+      type: Array,
+    },
   },
   {
     timestamps: true,
