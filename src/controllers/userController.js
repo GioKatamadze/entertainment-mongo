@@ -4,7 +4,6 @@ import generateToken from "../utils/generateToken.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  const bookmarks = [];
   const userExists = await User.findOne({ email });
 
   if (userExists) {
@@ -34,7 +33,6 @@ export const loginUser = asyncHandler(async (req, res) => {
     res.json({
       _id: user._id,
       email: user.email,
-      bookmarks: user.bookmarks,
       userToken: generateToken(user._id),
     });
   } else {
@@ -50,7 +48,6 @@ export const getUserProfile = asyncHandler(async (req, res) => {
     res.json({
       id: user._id,
       email: user.email,
-      bookmarks: user.bookmarks,
     });
   } else {
     res.status(404);
