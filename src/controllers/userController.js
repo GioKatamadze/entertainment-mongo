@@ -18,7 +18,6 @@ export const registerUser = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: user._id,
       email: user.email,
-      bookmarks: user.bookmarks,
     });
   } else {
     res.status(400);
