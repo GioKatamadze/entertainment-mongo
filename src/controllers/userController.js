@@ -12,7 +12,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
-  const user = await User.create({ email, password }, bookmarks);
+  const user = await User.create({ email, password });
 
   if (user) {
     res.status(201).json({
